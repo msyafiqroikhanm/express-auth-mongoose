@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Administrator",
+    "isAdministrative": true
+  },
+  {
+    "name": "QC",
+    "isAdministrative": false
+  }
+]

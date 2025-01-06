@@ -1,0 +1,9 @@
+[
+  { "name": "Feature", "parentModuleId": 1 },
+  { "name": "Module", "parentModuleId": 1 },
+  { "name": "Role", "parentModuleId": 1 },
+  { "name": "User", "parentModuleId": 1 },
+  { "name": "Project", "parentModuleId": 2 },
+  { "name": "Identity", "parentModuleId": 2 },
+  { "name": "Respondent", "parentModuleId": 2 }
+]

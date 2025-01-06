@@ -1,0 +1,81 @@
+## USER MODEL
+sequelize model:generate --name USR_Module --attributes name:string
+sequelize model:generate --name USR_Feature --attributes moduleId:integer, name:string
+sequelize model:generate --name USR_RoleFeature --attributes roleId:integer, featureId:integer, name:string
+sequelize model:generate --name USR_Role --attributes name:string
+sequelize model:generate --name USR_User --attributes roleId:integer,username:string,password:string,email:string,phoneNbr:string,lastLogin:date,deletedAt:date
+sequelize model:generate --name REF_ConfigurationCategory --attributes name:string
+sequelize model:generate --name SYS_Configuration --attributes categoryId:integer, name:string, value:string
+sequelize model:generate --name REF_PassengerStatus --attributes name:string
+sequelize model:generate --name REF_Region --attributes name:string
+sequelize model:generate --name REF_VehicleType --attributes name:string
+sequelize model:generate --name REF_VehicleScheduleStatus --attributes name:string
+sequelize model:generate --name REF_RoomType --attributes name:string
+sequelize model:generate --name REF_RoomStatus --attributes name:string
+sequelize model:generate --name REF_LodgerStatus --attributes name:string
+sequelize model:generate --name REF_FoodType --attributes name:string
+sequelize model:generate --name REF_FoodScheduleStatus --attributes name:string
+sequelize model:generate --name REF_ChatBotResponseType --attributes name:string
+sequelize model:generate --name REF_FeedbackTarget --attributes name:string
+sequelize model:generate --name REF_FeedbackStatus --attributes name:string
+sequelize model:generate --name REF_FeedbackType --attributes name:string
+sequelize model:generate --name REF_LocationType --attributes name:string
+model:generate --name REF_FAQType --attributes name:string
+sequelize model:generate --name REF_TemplateCategory --attributes name:string
+sequelize model:generate --name REF_MetaTemplateCategory --attributes name:string
+sequelize model:generate --name REF_QRType --attributes name:string
+sequelize model:generate --name QRM_QRTemplate --attributes name:string, file:string
+sequelize model:generate --name QRM_QR --attributes typeId:integer, templateId:integer, code:string, rawFile:string, combineFile:string
+sequelize model:generate --name REF_EventCategory --attributes name:string
+sequelize model:generate --name ENV_Event --attributes picId:integer, categoryId:integer, locationId:integer, name:string
+sequelize model:generate --name ENV_TimeEvent --attributes eventId:integer, start:date, end:date
+sequelize model:generate --name REF_ParticipantType --attributes name:string
+sequelize model:generate --name REF_GroupStatus --attributes name:string
+sequelize model:generate --name REF_IdentityType --attributes name:string
+sequelize model:generate --name PAR_Contingent --attributes regionId:integer, name:string
+sequelize model:generate --name PAR_ContingentGroup --attributes eventId:integer, statusId:integer, contingentId:integer, name:string
+sequelize model:generate --name PAR_Participant --attributes groupId:integer, qrId:integer, typeId:integer, identityTypeId:integer, name:string, gender:boolean, birthDate:dateonly, identityNo:string, phoneNbr:string, email:string, address:text
+sequelize model:generate --name PAR_ParticipantTracking --attributes participantId:integer, latitude:string, longtitude:string, accuracy:string, time:date
+sequelize model:generate --name PAR_GroupMember --attributes groupId:integer, participantId:integer
+sequelize model:generate --name REF_InformationCenterTargetType --attributes name:string
+sequelize model:generate --name CSM_ChatbotResponse --attributes responseTypeId:integer, message:text, isActive:boolean
+sequelize model:generate --name CSM_CustomerFeedback --attributes typeId:integer, targetId:integer, statusId:integer, customerName:string, longtitude:string, latitude:string, message:text
+sequelize model:generate --name CSM_BroadcastParticipant --attributes participantId:integer, broadcastId:integer, status:string
+sequelize model:generate --name CSM_BroadcastCommittee --attributes roleId:integer, broadcastId:integer, status:string
+sequelize model:generate --name CSM_BroadcastTemplate --attributes categoryId:integer, metaCategoryId:integer, name:string, message:text, messageVariableNumber:integer, messageVariableExample:json, headerType:enum, headerText:string, isHeaderVariable:boolean, headerVariableExample:string, headerFile:string, footer:string, button:json, metaStatus:string
+sequelize model:generate --name CSM_Broadcast --attributes templateId:integer, name:string, status:string, sentAt:date, messageParameters:json, buttonParameters:json, headerFile:string, headerText:string, description:text
+sequelize model:generate --name CSM_InformationCenter --attributes title:string, description:text
+sequelize model:generate --name ACM_Location --attributes parentLocationId:integer,picId:integer,picItId:integer,typeId:integer,name:string,description:text,address:string,phoneNbr:string,latitude:string,longtitude:string
+sequelize model:generate --name REF_RoomType --attributes name:string
+sequelize model:generate --name ACM_Facility --attributes locationId:integer,name:string,quantity:integer
+sequelize model:generate --name ACM_Room --attributes locationId:integer,typeId:integer,statusId:integer,name:string,floor:string,capacity:integer
+sequelize model:generate --name REF_TemplateHeaderType --attributes name:string
+sequelize model:generate --name ACM_ParticipantLodger --attributes participantId:integer,statusId:integer,roomId:integer,reservationIn:dateonly,reservationOut:dateonly,checkIn:date,checkout:date
+sequelize model:generate --name REF_PICType --attributes name:string
+sequelize model:generate --name USR_PIC --attributes userId:integer,typeId:integer
+sequelize model:generate --name REF_MetaTemplateLanguage --attributes name:string, value:string
+sequelize model:generate --name CSM_Conversation --attributes name:string, phoneNbr:string, timeStamp: date
+sequelize model:generate --name REF_MenuType --attributes name:string
+sequelize model:generate --name FNB_Courier --attributes name:string,phoneNbr:string,isAvailable:boolean,deletedAt:date
+sequelize model:generate --name TPT_SchedulePassenger --attributes vehicleScheduleId:integer, participantId:integer, statusId:integer
+sequelize model:generate --name TPT_Driver --attributes name:string, phoneNbr:string, email:string
+sequelize model:generate --name TPT_VehicleSchedule --attributes driverId:integer, vehicleId:integer, pickUpId:integer, destinationId:integer, statusId:integer, name:string, pickUpTime:date, dropOffTime:date
+sequelize model:generate --name TPT_VehicleTracking --attributes vehicleId:integer, latitude:string, longtitude:string, accuracy:string, time:date
+sequelize model:generate --name TPT_Vehicle --attributes vendorId:integer, typeId:integer, qrId:integer, name:string, vehicleNo:string, vehiclePlateNo:string, quantity:integer, availableQuantity:integer, capacity:integer
+sequelize model:generate --name TPT_Vendor --attributes name:string, address:text, phoneNbr:string, email:string
+sequelize model:generate --name FNB_Kitchen --attributes picId:integer,name:string,phoneNbr:string,longtitude:string,latitude:string,address:text
+sequelize model:generate --name FNB_Menu --attributes parentMenuId:integer,menuTypeId:integer,foodTypeId:integer,name:string,quantity:integer,description:text
+sequelize model:generate --name FNB_KitchenTarget --attributes menuId:integer,kitchenId:integer,date:dateonly,quantityTarget:integer,quantityActual:integer
+sequelize model:generate --name FNB_ScheduleMenu --attributes scheduleId:integer,menuId:integer,quantity:integer
+sequelize model:generate --name FNB_Schedule --attributes picLocationId:integer,picKitchenId:integer,qrId:integer,locationId:integer,kitchenId:integer,statusId:integer,courierId:integer,name:string,pickUpTime:date,dropOfTime:date,vehiclePlateNo:string
+sequelize model:generate --name REF_CommitteeType --attributes name:string
+sequelize model:generate --name ACM_RoomBedType --attributes locationId:integer,name:string,deletedAt:date
+sequelize model:generate --name SYS_Notification --attributes userId:integer,typeId:integer,relatedDataId:intiger,url:text,message:text,isRead:boolean
+sequelize model:generate --name TPT_DriverTracking --attributes driverId:integer, latitude:string, longtitude:string, accuracy:string, time:date
+sequelize model:generate --name CSM_TelegramConversation --attributes chatId:string, name:string, timeStamp:date
+sequelize model:generate --name FNB_Feedback --attributes eventName:string, date:date, deliciousness:integer, combination:integer, suitability:integer, arrangement:integer, appearance:integer, cleanliness:integer, aroma:integer, freshness:integer, name:string, contingent:string
+sequelize model:generate --name TPT_ArrivalDepartureInformation --attributes contingentId:integer, locationId:integer, name:string, type:enum, transportation:text, otherLocation:text, totalParticipant:integer, time:date
+sequelize model:generate --name SYS_NotificationType --attributes name:string, url:text
+sequelize model:generate --name SYS_RoleNotificationSubscription --attributes typeId:integer, roleId:integer, limitation:string
+sequelize model:generate --name SequelizeMeta_Seeder --attributes name:string
+sequelize model:generate --name TPT_VehicleScheduleHistory --attributes vehicleScheduleId:integer, statusId:integer, note:string
