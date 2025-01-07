@@ -1,3 +1,3 @@
 module.exports = {
-  superAdmin: 1,
+    superAdmin: 1,
 };
