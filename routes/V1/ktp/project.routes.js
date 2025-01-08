@@ -28,6 +28,9 @@ router.get(
             .isString(),
         query('page', 'Page number must be integer').optional().isInt(),
         query('perPage', 'Page number must be integer').optional().isInt(),
+        query('active', 'Active attribute must be either true or false')
+            .optional()
+            .isBoolean(),
     ],
     ValidateMiddleware.result,
     KTPProjectController.getAll

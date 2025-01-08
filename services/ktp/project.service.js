@@ -1,6 +1,6 @@
 const { default: mongoose } = require('mongoose');
 const KTP_Projects = require('../../models/ktpProject');
-const { DEFAULT_PAGINATION_PERPAGE } = require('../../libraries/general.lib');
+const { DEFAULT_PAGINATION } = require('../../libraries/general.lib');
 const KTP_Respondents = require('../../models/ktpRespondent');
 
 const validateProjectInputs = async (form, id) => {
@@ -63,7 +63,7 @@ const createKTPProject = async form => {
 const selectAllProjects = async (
     find,
     page = 1,
-    perPage = DEFAULT_PAGINATION_PERPAGE
+    perPage = DEFAULT_PAGINATION.perPage
 ) => {
     const skip = (page - 1) * perPage;
 

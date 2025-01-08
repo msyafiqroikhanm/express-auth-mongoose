@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-const vendorTypes = ['INTERNAL', 'EXTERNAL'];
+const { ENUM_VENDOR_TYPES } = require('../libraries/ktp.lib');
 
 const ktpVendorSchema = new mongoose.Schema(
     {
@@ -10,8 +9,9 @@ const ktpVendorSchema = new mongoose.Schema(
         },
         type: {
             type: String,
-            enum: vendorTypes,
+            enum: ENUM_VENDOR_TYPES,
             required: true,
+            index: true,
         },
         deletedAt: {
             type: Date,
@@ -20,6 +20,15 @@ const ktpVendorSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+ktpVendorSchema.pre(/^find/, function (next) {
+    this.where({ deletedAt: null });
+    next();
+});
+ktpVendorSchema.pre(/^count/, function (next) {
+    this.where({ deletedAt: null });
+    next();
+});
 
 const KTP_Vendors = mongoose.model(
     'KTP_Vendors',
