@@ -237,7 +237,7 @@ const validateUserInputs = async (form, id) => {
 
     if (invalid404.length) {
         return {
-            success: false,
+            isValid: false,
             code: 404,
             message: invalid404,
         };
@@ -257,7 +257,7 @@ const validateUserInputs = async (form, id) => {
 
     if (invalid400.length) {
         return {
-            success: false,
+            isValid: false,
             code: 400,
             message: invalid400,
         };

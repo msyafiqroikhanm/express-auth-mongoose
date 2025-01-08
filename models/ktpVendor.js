@@ -21,5 +21,9 @@ const ktpVendorSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const KTP_Vendors = mongoose.model('KTP_Vendors', ktpVendorSchema);
+const KTP_Vendors = mongoose.model(
+    'KTP_Vendors',
+    ktpVendorSchema,
+    'KTP_Vendors'
+);
 module.exports = KTP_Vendors;

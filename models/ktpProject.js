@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-const departments = ['QUANTITATIVE', 'QUALITATIVE'];
+const { ENUM_DEPARTMENTS } = require('../libraries/ktp.lib');
 
 const ktpProjectSchema = new mongoose.Schema(
     {
@@ -14,15 +13,18 @@ const ktpProjectSchema = new mongoose.Schema(
         },
         department: {
             type: String,
-            enum: departments,
+            enum: ENUM_DEPARTMENTS,
             required: true,
+            index: true,
         },
         study: {
             type: String,
+            index: true,
         },
         isActive: {
             type: Boolean,
             default: true,
+            index: true,
         },
         deletedAt: {
             type: Date,
@@ -32,5 +34,20 @@ const ktpProjectSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const KTP_Projects = mongoose.model('KTP_Projects', ktpProjectSchema);
+ktpProjectSchema.index({ projectId: 1, department: 1, study: 1, isActive: 1 });
+
+ktpProjectSchema.pre(/^find/, function (next) {
+    this.where({ deletedAt: null });
+    next();
+});
+ktpProjectSchema.pre(/^count/, function (next) {
+    this.where({ deletedAt: null });
+    next();
+});
+
+const KTP_Projects = mongoose.model(
+    'KTP_Projects',
+    ktpProjectSchema,
+    'KTP_Projects'
+);
 module.exports = KTP_Projects;

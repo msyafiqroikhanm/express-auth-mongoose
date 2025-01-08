@@ -27,7 +27,7 @@ class ResponseFormatter {
         });
     }
 
-    static async success200(res, message, data) {
+    static async success200(res, message, data, pagination) {
         const code = 200;
         const status = 'OK';
         if (res.url) {
@@ -40,13 +40,17 @@ class ResponseFormatter {
             }
             logger.info(code, message);
         }
+        const meta = {
+            success: true,
+            code,
+            status,
+            message,
+        };
+        if (pagination) {
+            meta.pagination = pagination;
+        }
         return res.status(code).json({
-            meta: {
-                success: true,
-                code,
-                status,
-                message,
-            },
+            meta,
             data,
         });
     }

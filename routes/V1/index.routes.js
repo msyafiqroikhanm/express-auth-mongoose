@@ -6,6 +6,7 @@ const featureRoutes = require('./feature.routes');
 const roleRoutes = require('./role.routes');
 const userRoutes = require('./user.routes');
 const profileRoutes = require('./profile.routes');
+const ktpRoutes = require('./ktp/index.routes');
 
 router.use('/auth', authRoutes);
 router.use('/modules', moduleRoutes);
@@ -13,5 +14,6 @@ router.use('/features', featureRoutes);
 router.use('/roles', roleRoutes);
 router.use('/users', userRoutes);
 router.use('/profile', profileRoutes);
+router.use('/ktp', ktpRoutes);
 
 module.exports = router;

@@ -1,0 +1,7 @@
+const DEFAULT_PAGINATION_PERPAGE = 10;
+const DEFAULT_PAGINATION = {
+    page: 1,
+    perPage: 10,
+};
+
+module.exports = { DEFAULT_PAGINATION_PERPAGE, DEFAULT_PAGINATION };
