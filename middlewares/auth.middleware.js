@@ -1,5 +1,6 @@
 const passport = require('passport');
 const ResponseFormatter = require('../helpers/responseFormatter.helper');
+const STATUS_CODE = require('../libraries/statusCode.lib');
 require('dotenv').config();
 
 class AuthMiddleware {
@@ -65,30 +66,27 @@ class AuthMiddleware {
         }
     }
 
-    static async xAppKey(req, _res, next) {
+    static async xAPIKey(req, _res, next) {
         try {
             if (!req.headers) {
                 throw {
-                    code: 401,
-                    status: 'Unauthorized Request',
-                    message: 'Anda tidak memiliki akses ke layanan ini',
+                    code: STATUS_CODE.UNAUTHORIZED.BASE,
+                    status: 'Unauthorized API KEY',
+                    message: 'You do not have access to this resource',
                 };
             }
-            if (!req.headers['x-app-key']) {
+            if (!req.headers['x-api-key']) {
                 throw {
-                    code: 401,
-                    status: 'Unauthorized Request',
-                    message: 'Anda tidak memiliki akses ke layanan ini',
+                    code: STATUS_CODE.UNAUTHORIZED.BASE,
+                    status: 'Unauthorized API KEY',
+                    message: 'You do not have access to this resource',
                 };
             }
-            if (
-                req.headers['x-app-key'] !==
-                'PTJAKTOURJXBPTJAKTOURJXBPTJAKTOURJXB'
-            ) {
+            if (req.headers['x-api-key'] !== process.env.API_KEY) {
                 throw {
-                    code: 401,
-                    status: 'Unauthorized Request',
-                    message: 'Anda tidak memiliki akses ke layanan ini',
+                    code: STATUS_CODE.UNAUTHORIZED.BASE,
+                    status: 'Unauthorized API KEY',
+                    message: 'You do not have access to this resource',
                 };
             }
             next();
